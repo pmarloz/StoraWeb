@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Helvetica Neue fallbacks */
+.font-helvetica-light {
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 300;
+}
+
+.font-helvetica-medium {
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 500;
+}
+
+.font-cursive {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #2f3130;
+  color: #f8f6f3;
+  line-height: 1.4;
+}
+
+/* Scroll animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+/* Hide scrollbar for horizontal scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Timeline styles */
+.timeline-container {
+  position: relative;
+}
+
+.timeline-line {
+  position: absolute;
+  top: calc(50% - 110px);
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent 10%, #c9b390 20%, #c9b390 80%, transparent 90%);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+/* Mobile timeline line - rotated 90 degrees */
+@media (max-width: 1023px) {
+  .timeline-line {
+    top: 0;
+    left: 50%;
+    right: auto;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, #c9b390 20%, #c9b390 80%, transparent 100%);
+    transform: translateX(-50%);
+  }
+}
+
+/* Timeline line for light backgrounds */
+.timeline-line-light {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent 0%, #2f3130 20%, #2f3130 80%, transparent 100%);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.timeline-step {
+  position: relative;
+  z-index: 10;
+}
+
+/* Curve separator styles */
+.curve-separator {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.curve-path {
+  fill: #c9b390;
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(201, 179, 144, 0.2);
+}
+
+.hover-scale {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* Image hover effects */
+.image-hover-zoom {
+  overflow: hidden;
+}
+
+.image-hover-zoom img {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image-hover-zoom:hover img {
+  transform: scale(1.1);
+}
+
+/* Button animations */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+/* Parallax effect */
+.parallax {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+}
+
+/* Custom cursor for interactive elements */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Opaque navigation */
+.nav-opaque {
+  background: #2f3130;
+  border-bottom: 1px solid rgba(201, 179, 144, 0.2);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Stagger animation delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(90deg, #2f3130 25%, #3a3c3b 50%, #2f3130 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Non-interactive elements */
+.no-hover {
+  pointer-events: none;
+}
+
+.no-hover * {
+  pointer-events: none;
+}
+
+/* Tighter line-height utilities */
+.leading-tight {
+  line-height: 1.25;
+}
+
+/* Client logo hover effects - only for logos */
+.client-logo-hover {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.client-logo-hover:hover {
+  transform: translateY(-4px);
+  background-color: rgba(201, 179, 144, 0.2);
+}
+
+/* Text shadow for better readability */
+.text-shadow-lg {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Services navigation arrows - positioned much further outside */
+.services-nav-arrow {
+  transition: all 0.2s ease-out;
+  opacity: 0.8;
+  border: 2px solid rgba(232, 220, 204, 0.3);
+}
+
+.services-nav-arrow:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  background-color: #1f2120;
+  border-color: rgba(232, 220, 204, 0.5);
+  box-shadow: 0 4px 12px rgba(47, 49, 48, 0.3);
+}
+
+.services-nav-arrow:active {
+  transform: translateY(0px);
+}
+
+/* Position arrows much further outside the container - moved 4px up again */
+.services-nav-arrow-left {
+  left: -60px;
+  top: calc(33.333333% - 6px);
+}
+
+.services-nav-arrow-right {
+  right: -60px;
+  top: calc(33.333333% - 6px);
+}
+
+/* Responsive positioning for smaller screens */
+@media (max-width: 1600px) {
+  .services-nav-arrow-left {
+    left: -60px;
+    top: calc(33.333333% - 6px);
+  }
+  
+  .services-nav-arrow-right {
+    right: -60px;
+    top: calc(33.333333% - 6px);
+  }
+}
+
+@media (max-width: 1400px) {
+  .services-nav-arrow-left {
+    left: -60px;
+    top: calc(33.333333% - 6px);
+  }
+  
+  .services-nav-arrow-right {
+    right: -60px;
+    top: calc(33.333333% - 6px);
+  }
+}
+
+@media (max-width: 768px) {
+  .services-nav-arrow-left {
+    left: -60px;
+    top: calc(33.333333% - 6px);
+  }
+  
+  .services-nav-arrow-right {
+    right: -60px;
+    top: calc(33.333333% - 6px);
+  }
+}
+
+/* Custom width for service cards */
+.w-70 {
+  width: 280px;
+}
+
+/* Show first ornamental divider only on screens 1800px and wider */
+@media (min-width: 1400px) {
+  .first-ornamental-divider {
+    display: block !important;
+  }
+}
+
+/* Seamless infinite scrolling animation */
+@keyframes seamlessScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50%));
+  }
+}
+
+.animate-scroll {
+  animation: seamlessScroll 90s linear infinite;
+}
